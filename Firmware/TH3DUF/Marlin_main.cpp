@@ -2007,6 +2007,11 @@ static void clean_up_after_endstop_or_probe_move() {
       #if ENABLED(PROBING_HEATERS_OFF)
         thermalManager.pause(p);
       #endif
+      #if ENABLED(PROBING_MOTORS_OFF)
+        disable_e_steppers();
+        disable_Y();
+        disable_X();
+      #endif
       #if ENABLED(PROBING_FANS_OFF)
         fans_pause(p);
       #endif
@@ -2160,15 +2165,15 @@ static void clean_up_after_endstop_or_probe_move() {
     #if ENABLED(BLTOUCH)
       if (set_bltouch_deployed(true)) return true;
     #endif
-	#if ENABLED(HEATER_RECOVERY)
-	  #if ENABLED(PROBING_HEATERS_OFF)
+    #if ENABLED(HEATER_RECOVERY)
+      #if ENABLED(PROBING_HEATERS_OFF)
         // Wait for bed to heat back up between probing
         while(thermalManager.degBed() < thermalManager.degTargetBed()) 
-		  {
-  			safe_delay(500);
-		  }
-	  #endif
-  #endif
+        {
+          safe_delay(500);
+        }
+      #endif
+    #endif
 
     #if QUIET_PROBING
       probing_pause(true);

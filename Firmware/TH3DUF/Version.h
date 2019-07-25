@@ -35,13 +35,13 @@
   /**
    * Marlin release version identifier
    */
-  #define SHORT_BUILD_VERSION "TH3D U1.R1.8a"
+  #define SHORT_BUILD_VERSION UNIFIED_VERSION
 
   /**
    * Verbose version identifier which should contain a reference to the location
    * from where the binary was downloaded or the source code was compiled.
    */
-  #define DETAILED_BUILD_VERSION SHORT_BUILD_VERSION ""
+  #define DETAILED_BUILD_VERSION SHORT_BUILD_VERSION
 
   /**
    * The STRING_DISTRIBUTION_DATE represents when the binary file was built,

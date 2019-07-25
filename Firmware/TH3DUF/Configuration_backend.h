@@ -6,9 +6,328 @@
 //==================== DO NOT MODIFY BELOW THIS LINE ========================
 //===========================================================================
 
+//Sensor Mounts
+#if ENABLED(CUSTOM_PROBE)
+  #define EZABL_ENABLE
+  #if ENABLED(ANET_A2) || ENABLED(ANET_A6) || ENABLED(ANET_A8) || ENABLED(ANET_E10) || ENABLED(ANET_E12)
+    #define DISABLE_BOOT
+  #endif
+#endif
+#if ENABLED(CR10_VOLCANO)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER 30
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER 12
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(CR10_V6HEAVYDUTY)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER 63
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER 0
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(CR10_OEM)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER -44
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -10
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(CR10_FANG)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER 48
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -11
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(TM3DAERO)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER -51
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -7
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(TM3DAERO_EXTENDED)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER -55
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -7
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(ENDER2_OEM)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER -33
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -10
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(ENDER2_V6)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER -35
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -2
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(TORNADO_OEM)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER -37
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -10
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(TORNADO_VOLCANO)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER 30
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER 12
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(TORNADO_V6HEAVYDUTY)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER 63
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER 0
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(TAZ5_OEM)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER -52
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER 15
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(WANHAO_I3_OEM)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER -25
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -38
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(WANHAO_D6_OEM)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER 24
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -16
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(WANHAO_I3_DIIICOOLER)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER -36
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -37
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(WANHAO_I3MINI_OEM_EZABLMINI)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER -32
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER 0
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(WANHAO_I3MINI_OEM)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER -36
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER 0
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(PETSFANG)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER 48
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -2
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(ALFAWISEU10_OEM)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER 39
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -47
+  #define EZABL_ENABLE
+#endif
+#if ENABLED(ANET_OEM)
+  #define EZABL_ENABLE
+  #define DISABLE_BOOT
+#endif
+
+//TH3D Artillery Model Settings
+#if ENABLED(AR_EZ300)
+  #ifndef MOTHERBOARD
+    #define MOTHERBOARD BOARD_MKS_13
+  #endif
+
+  #define EZOUT_V2
+
+  #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+  #define BAUDRATE 250000
+
+  #define X_MIN_ENDSTOP_INVERTING true
+  #define Y_MIN_ENDSTOP_INVERTING true
+  #define Z_MIN_ENDSTOP_INVERTING true
+  #define X_MAX_ENDSTOP_INVERTING false
+  #define Y_MAX_ENDSTOP_INVERTING false
+  #define Z_MAX_ENDSTOP_INVERTING false
+  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
+  
+  #if ENABLED(TITAN_EXTRUDER)
+    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, TITAN_EXTRUDER_STEPS }
+  #else
+    #if ENABLED(CUSTOM_ESTEPS)
+      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, CUSTOM_ESTEPS_VALUE }
+    #else
+      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 100 }
+    #endif
+  #endif
+  
+  #define DEFAULT_MAX_FEEDRATE          { 300, 300, 15, 50 }
+  #define DEFAULT_MAX_ACCELERATION      { 2000, 2000, 200, 10000 }
+
+  #define DEFAULT_ACCELERATION          750    
+  #define DEFAULT_RETRACT_ACCELERATION  1500   
+  #define DEFAULT_TRAVEL_ACCELERATION   750    
+  
+  #define DEFAULT_XJERK                 10.0
+  #define DEFAULT_YJERK                 10.0
+  #define DEFAULT_ZJERK                  0.4
+  #define DEFAULT_EJERK                  5.0
+  
+  #define INVERT_X_DIR false
+  #define INVERT_Y_DIR false
+  #define INVERT_Z_DIR true
+  
+  #if ENABLED(TITAN_EXTRUDER)
+    #define INVERT_E0_DIR true
+  #else
+    #define INVERT_E0_DIR false
+  #endif
+
+  #define X_BED_SIZE 300
+  #define Y_BED_SIZE 300
+  #define Z_MAX_POS 380
+  
+  #if ENABLED(HOME_ADJUST)
+    #define X_MIN_POS X_HOME_LOCATION
+    #define Y_MIN_POS Y_HOME_LOCATION
+  #else
+    #define X_MIN_POS 0
+    #define Y_MIN_POS 0
+  #endif
+  
+  #define ENCODER_PULSES_PER_STEP 4
+  #define ENCODER_STEPS_PER_MENU_ITEM 1
+  
+  #define REVERSE_ENCODER_DIRECTION
+#endif
+
+
+//FT-5 Model Settings
+#if ENABLED(FT5)
+  #ifndef MOTHERBOARD
+    #define MOTHERBOARD BOARD_MKS_13
+  #endif
+
+  #if DISABLED(FT5_12864LCD)
+    #define REPRAP_DISCOUNT_SMART_CONTROLLER
+    #define LCD2004
+  #else
+    #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+  #endif
+  
+  #define BAUDRATE 250000
+
+  #define X_MIN_ENDSTOP_INVERTING true
+  #define Y_MIN_ENDSTOP_INVERTING true
+  #define Z_MIN_ENDSTOP_INVERTING true
+  #define X_MAX_ENDSTOP_INVERTING false
+  #define Y_MAX_ENDSTOP_INVERTING false
+  #define Z_MAX_ENDSTOP_INVERTING false
+  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
+  
+  #if ENABLED(TITAN_EXTRUDER)
+    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, TITAN_EXTRUDER_STEPS }
+  #else
+    #if ENABLED(CUSTOM_ESTEPS)
+      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, CUSTOM_ESTEPS_VALUE }
+    #else
+      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 105 }
+    #endif
+  #endif
+  
+  #define DEFAULT_MAX_FEEDRATE          { 300, 300, 15, 25 }
+  #define DEFAULT_MAX_ACCELERATION      { 800, 800, 200, 10000 }
+
+  #define DEFAULT_ACCELERATION          800    
+  #define DEFAULT_RETRACT_ACCELERATION  2500   
+  #define DEFAULT_TRAVEL_ACCELERATION   800    
+  
+  #define DEFAULT_XJERK                 10.0
+  #define DEFAULT_YJERK                 10.0
+  #define DEFAULT_ZJERK                  0.4
+  #define DEFAULT_EJERK                  5.0
+  
+  #define INVERT_X_DIR true
+  #define INVERT_Y_DIR false
+  #define INVERT_Z_DIR true
+  
+  #if ENABLED(TITAN_EXTRUDER)
+    #define INVERT_E0_DIR true
+  #else
+    #define INVERT_E0_DIR false
+  #endif
+
+  #define X_BED_SIZE 300
+  #define Y_BED_SIZE 300
+  #define Z_MAX_POS 380
+  
+  #if ENABLED(HOME_ADJUST)
+    #define X_MIN_POS X_HOME_LOCATION
+    #define Y_MIN_POS Y_HOME_LOCATION
+  #else
+    #define X_MIN_POS 0
+    #define Y_MIN_POS 0
+  #endif
+  
+  #define ENCODER_PULSES_PER_STEP 4
+  #define ENCODER_STEPS_PER_MENU_ITEM 1
+  
+  #define REVERSE_ENCODER_DIRECTION
+
+#endif
+//end FT-5 Model Settings
+
+//Wanhao D6 Model Settings
+#if ENABLED(WANHAO_D6)
+  #define BAUDRATE 250000
+  
+  #define ULTIPANEL
+  #define U8GLIB_SSD1306
+  #define LCD_WIDTH 22
+  #define LCD_HEIGHT 5
+  #define LCD_RESET_PIN 5
+  #define PCA9632
+  
+  #define X_MIN_ENDSTOP_INVERTING true
+  #define Y_MIN_ENDSTOP_INVERTING true
+  #define Z_MIN_ENDSTOP_INVERTING true
+  #define X_MAX_ENDSTOP_INVERTING false
+  #define Y_MAX_ENDSTOP_INVERTING false
+  #define Z_MAX_ENDSTOP_INVERTING false
+  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
+  
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 99 }
+
+  #define DEFAULT_MAX_FEEDRATE          { 300, 300, 15, 50 }
+
+  #define DEFAULT_MAX_ACCELERATION      { 1500, 1500, 100, 500 }
+
+  #define DEFAULT_ACCELERATION          500    // X, Y, Z and E acceleration for printing moves
+  #define DEFAULT_RETRACT_ACCELERATION  1000    // E acceleration for retracts
+  #define DEFAULT_TRAVEL_ACCELERATION   500    // X, Y, Z acceleration for travel (non printing) moves
+  
+  #define DEFAULT_XJERK                 10.0
+  #define DEFAULT_YJERK                 10.0
+  #define DEFAULT_ZJERK                  0.3
+  #define DEFAULT_EJERK                  1.0
+  
+  #define INVERT_X_DIR true
+  #define INVERT_Y_DIR false
+  #define INVERT_Z_DIR true
+  #define INVERT_E0_DIR true
+  
+  #ifndef MOTHERBOARD
+    #define MOTHERBOARD BOARD_ULTIMAIN_2
+  #endif
+  
+  #if ENABLED(WANHAO_D6_5015)
+    #define X_BED_SIZE 175
+  #else
+    #define X_BED_SIZE 200
+  #endif
+  #define Y_BED_SIZE 200  
+  #define Z_MAX_POS 170
+
+  #if ENABLED(HOME_ADJUST)
+    #define X_MIN_POS X_HOME_LOCATION
+    #define Y_MIN_POS Y_HOME_LOCATION
+  #else
+    #define X_MIN_POS 0
+    #define Y_MIN_POS 0
+  #endif
+  
+  #define ENCODER_PULSES_PER_STEP 2
+  #define ENCODER_STEPS_PER_MENU_ITEM 1
+  #define REVERSE_ENCODER_DIRECTION
+
+#endif //end D6
+
 //Alfawise U10 Model Settings
 #if ENABLED(ALFAWISE_U10)
   #define BAUDRATE 250000
+
+  #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
 
   #ifndef MOTHERBOARD
     #define MOTHERBOARD BOARD_RAMPSPLUS2
@@ -16,27 +335,11 @@
   
   #define X_MIN_ENDSTOP_INVERTING true
   #define Y_MIN_ENDSTOP_INVERTING true
-  #if ENABLED(EZABL_ENABLE)
-	  #if ENABLED(NC_SENSOR)
-  		#define Z_MIN_ENDSTOP_INVERTING false
-	  #else
-		  #define Z_MIN_ENDSTOP_INVERTING true
-	  #endif
-  #else
-    #define Z_MIN_ENDSTOP_INVERTING true
-  #endif
+  #define Z_MIN_ENDSTOP_INVERTING true
   #define X_MAX_ENDSTOP_INVERTING true
   #define Y_MAX_ENDSTOP_INVERTING true
   #define Z_MAX_ENDSTOP_INVERTING true
-  #if ENABLED(EZABL_ENABLE)
-    #if ENABLED(NC_SENSOR)
-		  #define Z_MIN_PROBE_ENDSTOP_INVERTING false
-	  #else
-		  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
-	  #endif
-  #else
-    #define Z_MIN_PROBE_ENDSTOP_INVERTING true
-  #endif
+  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
     
   #if ENABLED(TITAN_EXTRUDER)
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, TITAN_EXTRUDER_STEPS }
@@ -63,8 +366,13 @@
   #define Y_BED_SIZE 400
   #define Z_MAX_POS 500
 
-  #define X_MIN_POS 0
-  #define Y_MIN_POS 0
+  #if ENABLED(HOME_ADJUST)
+    #define X_MIN_POS X_HOME_LOCATION
+    #define Y_MIN_POS Y_HOME_LOCATION
+  #else
+    #define X_MIN_POS 0
+    #define Y_MIN_POS 0
+  #endif
   
   #define INVERT_X_DIR true
   #define INVERT_Y_DIR true
@@ -85,33 +393,19 @@
 #if ENABLED(WANHAO_I3MINI)
   #define BAUDRATE 250000
 
+  #define MINIPANEL
+
   #ifndef MOTHERBOARD
     #define MOTHERBOARD BOARD_ONEPLUS1_wanhao
   #endif
   
   #define X_MIN_ENDSTOP_INVERTING true
   #define Y_MIN_ENDSTOP_INVERTING true
-  #if ENABLED(EZABL_ENABLE)
-	  #if ENABLED(NC_SENSOR)
-  		#define Z_MIN_ENDSTOP_INVERTING false
-	  #else
-		  #define Z_MIN_ENDSTOP_INVERTING true
-	  #endif
-  #else
-    #define Z_MIN_ENDSTOP_INVERTING true
-  #endif
+  #define Z_MIN_ENDSTOP_INVERTING true
   #define X_MAX_ENDSTOP_INVERTING true
   #define Y_MAX_ENDSTOP_INVERTING true
   #define Z_MAX_ENDSTOP_INVERTING true
-  #if ENABLED(EZABL_ENABLE)
-    #if ENABLED(NC_SENSOR)
-		  #define Z_MIN_PROBE_ENDSTOP_INVERTING false
-	  #else
-		  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
-	  #endif
-  #else
-    #define Z_MIN_PROBE_ENDSTOP_INVERTING true
-  #endif
+  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
     
   #if ENABLED(TITAN_EXTRUDER)
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, TITAN_EXTRUDER_STEPS }
@@ -138,8 +432,13 @@
   #define Y_BED_SIZE 140
   #define Z_MAX_POS 100
 
-  #define X_MIN_POS 0
-  #define Y_MIN_POS 0
+  #if ENABLED(HOME_ADJUST)
+    #define X_MIN_POS X_HOME_LOCATION
+    #define Y_MIN_POS Y_HOME_LOCATION
+  #else
+    #define X_MIN_POS 0
+    #define Y_MIN_POS 0
+  #endif
   
   #define INVERT_X_DIR true
   #define INVERT_Y_DIR false
@@ -168,27 +467,11 @@
 
   #define X_MIN_ENDSTOP_INVERTING true
   #define Y_MIN_ENDSTOP_INVERTING true
-  #if ENABLED(EZABL_ENABLE)
-    #if ENABLED(NC_SENSOR)
-      #define Z_MIN_ENDSTOP_INVERTING false
-    #else
-      #define Z_MIN_ENDSTOP_INVERTING true
-    #endif
-  #else
-    #define Z_MIN_ENDSTOP_INVERTING true
-  #endif
+  #define Z_MIN_ENDSTOP_INVERTING true
   #define X_MAX_ENDSTOP_INVERTING false
   #define Y_MAX_ENDSTOP_INVERTING false
   #define Z_MAX_ENDSTOP_INVERTING false
-  #if ENABLED(EZABL_ENABLE)
-    #if ENABLED(NC_SENSOR)
-      #define Z_MIN_PROBE_ENDSTOP_INVERTING false
-    #else
-      #define Z_MIN_PROBE_ENDSTOP_INVERTING true
-    #endif
-  #else
-    #define Z_MIN_PROBE_ENDSTOP_INVERTING true
-  #endif
+  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
 
   #if ENABLED(TITAN_EXTRUDER)
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, TITAN_EXTRUDER_STEPS }
@@ -212,8 +495,13 @@
   #define Y_BED_SIZE 200
   #define Z_MAX_POS 180
 
-  #define X_MIN_POS 0
-  #define Y_MIN_POS 0
+  #if ENABLED(HOME_ADJUST)
+    #define X_MIN_POS X_HOME_LOCATION
+    #define Y_MIN_POS Y_HOME_LOCATION
+  #else
+    #define X_MIN_POS 0
+    #define Y_MIN_POS 0
+  #endif
 
   #define DEFAULT_XJERK                 10.0
   #define DEFAULT_YJERK                 10.0
@@ -230,9 +518,9 @@
     #define INVERT_E0_DIR true
   #endif
 
-  #define ST7920_DELAY_1 DELAY_0_NOP
-  #define ST7920_DELAY_2 DELAY_3_NOP
-  #define ST7920_DELAY_3 DELAY_0_NOP
+  #define ST7920_DELAY_1 DELAY_2_NOP
+  #define ST7920_DELAY_2 DELAY_2_NOP
+  #define ST7920_DELAY_3 DELAY_2_NOP
 
   #define LCD_FOR_MELZI
 #endif
@@ -242,15 +530,13 @@
   #define SLIM_1284P
   #define BAUDRATE 115200
 
+  #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+
   #define X_MIN_ENDSTOP_INVERTING false
   #define Y_MIN_ENDSTOP_INVERTING false
   
   #if ENABLED(EZABL_ENABLE)
-	  #if ENABLED(NC_SENSOR)
-		  #define Z_MIN_ENDSTOP_INVERTING false
-	  #else
-		  #define Z_MIN_ENDSTOP_INVERTING true
-	  #endif
+		#define Z_MIN_ENDSTOP_INVERTING true
   #else
     #define Z_MIN_ENDSTOP_INVERTING false
   #endif
@@ -260,11 +546,7 @@
   #define Z_MAX_ENDSTOP_INVERTING false
   
   #if ENABLED(EZABL_ENABLE)
-    #if ENABLED(NC_SENSOR)
-	  #define Z_MIN_PROBE_ENDSTOP_INVERTING false
-	#else
 	  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
-	#endif
   #else
     #define Z_MIN_PROBE_ENDSTOP_INVERTING false
   #endif
@@ -275,7 +557,7 @@
     #if ENABLED(CUSTOM_ESTEPS)
 	  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, CUSTOM_ESTEPS_VALUE }
 	#else
-      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 95 }
+      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
 	#endif
   #endif
   
@@ -335,8 +617,13 @@
     #define Z_MAX_POS 250
   #endif
 
-  #define X_MIN_POS 0
-  #define Y_MIN_POS 0
+  #if ENABLED(HOME_ADJUST)
+    #define X_MIN_POS X_HOME_LOCATION
+    #define Y_MIN_POS Y_HOME_LOCATION
+  #else
+    #define X_MIN_POS 0
+    #define Y_MIN_POS 0
+  #endif
   
   #define ENCODER_PULSES_PER_STEP 4
   #define ENCODER_STEPS_PER_MENU_ITEM 1
@@ -344,18 +631,20 @@
 #endif //end CR-10
 
 //CR-10S Model Settings
-#if ENABLED(CR10S) || ENABLED(CR10S_MINI) || ENABLED(CR10S_S4) || ENABLED(CR10S_S5)
+#if ENABLED(CR10S) || ENABLED(CR10S_MINI) || ENABLED(CR10S_S4) || ENABLED(CR10S_S5) || ENABLED(ENDER3_DUALBOARD)
   #define BAUDRATE 115200
+
+  #if ENABLED(CR10LCD_CR10S)
+    #define CR10_STOCKDISPLAY
+  #else
+    #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+  #endif
 
   #define X_MIN_ENDSTOP_INVERTING false
   #define Y_MIN_ENDSTOP_INVERTING false
   
   #if ENABLED(EZABL_ENABLE)
-	  #if ENABLED(NC_SENSOR)
-		  #define Z_MIN_ENDSTOP_INVERTING false
-	  #else
-		  #define Z_MIN_ENDSTOP_INVERTING true
-	  #endif
+	  #define Z_MIN_ENDSTOP_INVERTING true
   #else
     #define Z_MIN_ENDSTOP_INVERTING false
   #endif
@@ -365,11 +654,7 @@
   #define Z_MAX_ENDSTOP_INVERTING false
   
   #if ENABLED(EZABL_ENABLE)
-    #if ENABLED(NC_SENSOR)
-	  #define Z_MIN_PROBE_ENDSTOP_INVERTING false
-	#else
 	  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
-	#endif
   #else
     #define Z_MIN_PROBE_ENDSTOP_INVERTING false
   #endif
@@ -380,7 +665,7 @@
     #if ENABLED(CUSTOM_ESTEPS)
 	  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, CUSTOM_ESTEPS_VALUE }
 	#else
-      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 95 }
+      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
 	#endif
   #endif
   
@@ -432,9 +717,65 @@
     #define Y_BED_SIZE 500
     #define Z_MAX_POS 500
   #endif
+  
+  #if ENABLED(ENDER3_DUALBOARD)
+    #define X_BED_SIZE 220
+    #define Y_BED_SIZE 220
+    #define Z_MAX_POS 250
+    #define CR10LCD_CR10S	
+  #endif
+  
+  //dual extrusion options
+  
+  //single hotend y adapter
+  #if ENABLED(SINGLE_HOTEND_YADAPTER)
+    #define CR10SDUALEBOARD
+    #define SINGLENOZZLE
+    
+    #if ENABLED(TITAN_EXTRUDER)
+      #define INVERT_E1_DIR true
+    #else
+      #define INVERT_E1_DIR false
+    #endif
 
-  #define X_MIN_POS 0
-  #define Y_MIN_POS 0
+  #endif
+
+  //dual hotend dual nozzles
+  #if ENABLED(DUAL_HOTEND_DUAL_NOZZLES)
+    #define CR10SDUALEBOARD
+    
+    #if ENABLED(TITAN_EXTRUDER)
+      #define INVERT_E1_DIR true
+    #else
+      #define INVERT_E1_DIR false
+    #endif
+        
+    #define HOTEND_OFFSET_X {0.0, DUAL_HOTEND_X_DISTANCE} // (in mm) for each extruder, offset of the hotend on the X axis
+    #define HOTEND_OFFSET_Y {0.0, 0.00}  // (in mm) for each extruder, offset of the hotend on the Y axis
+  
+  #endif
+
+  //dual hotend single mixing nozzle
+  #if ENABLED(DUAL_HOTEND_SINGLE_NOZZLE)
+    #define CR10SDUALEBOARD
+    #define SINGLENOZZLE
+        
+    #if ENABLED(TITAN_EXTRUDER)
+      #define INVERT_E1_DIR true
+    #else
+      #define INVERT_E1_DIR false
+    #endif
+
+  #endif
+
+  #if ENABLED(HOME_ADJUST)
+    #define X_MIN_POS X_HOME_LOCATION
+    #define Y_MIN_POS Y_HOME_LOCATION
+  #else
+    #define X_MIN_POS 0
+    #define Y_MIN_POS 0
+  #endif
+  
   #define ENCODER_PULSES_PER_STEP 4
   #define ENCODER_STEPS_PER_MENU_ITEM 1
 
@@ -444,15 +785,13 @@
 #if ENABLED(ENDER2)
   #define SLIM_1284P
   #define BAUDRATE 115200
+
+  #define MINIPANEL
   
   #define X_MIN_ENDSTOP_INVERTING false
   #define Y_MIN_ENDSTOP_INVERTING false
   #if ENABLED(EZABL_ENABLE)
-	  #if ENABLED(NC_SENSOR)
-  		#define Z_MIN_ENDSTOP_INVERTING false
-	  #else
-		  #define Z_MIN_ENDSTOP_INVERTING true
-	  #endif
+		#define Z_MIN_ENDSTOP_INVERTING true
   #else
     #define Z_MIN_ENDSTOP_INVERTING false
   #endif
@@ -460,11 +799,7 @@
   #define Y_MAX_ENDSTOP_INVERTING false
   #define Z_MAX_ENDSTOP_INVERTING false
   #if ENABLED(EZABL_ENABLE)
-    #if ENABLED(NC_SENSOR)
-		  #define Z_MIN_PROBE_ENDSTOP_INVERTING false
-	  #else
-		  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
-	  #endif
+	  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
   #else
     #define Z_MIN_PROBE_ENDSTOP_INVERTING false
   #endif
@@ -475,7 +810,7 @@
     #if ENABLED(CUSTOM_ESTEPS)
 	    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, CUSTOM_ESTEPS_VALUE }
 	  #else
-      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 95 }
+      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
 	  #endif
   #endif
   #define DEFAULT_MAX_FEEDRATE          { 500, 500, 15, 50 }
@@ -503,8 +838,14 @@
     #define MOTHERBOARD BOARD_MELZI_CREALITY_ENDER2
   #endif
 
-  #define X_MIN_POS 0
-  #define Y_MIN_POS 0
+  #if ENABLED(HOME_ADJUST)
+    #define X_MIN_POS X_HOME_LOCATION
+    #define Y_MIN_POS Y_HOME_LOCATION
+  #else
+    #define X_MIN_POS 0
+    #define Y_MIN_POS 0
+  #endif
+  
   #define X_BED_SIZE 160
   #define Y_BED_SIZE 150
   #define Z_MAX_POS 220
@@ -515,29 +856,15 @@
 #if ENABLED(TORNADO)
   #define BAUDRATE 250000
 
+  #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+
   #define X_MIN_ENDSTOP_INVERTING true
   #define Y_MIN_ENDSTOP_INVERTING true
-  #if ENABLED(EZABL_ENABLE)
-	#if ENABLED(NC_SENSOR)
-		#define Z_MIN_ENDSTOP_INVERTING false
-	#else
-		#define Z_MIN_ENDSTOP_INVERTING true
-	#endif
-  #else
-    #define Z_MIN_ENDSTOP_INVERTING true
-  #endif
+  #define Z_MIN_ENDSTOP_INVERTING true
   #define X_MAX_ENDSTOP_INVERTING false
   #define Y_MAX_ENDSTOP_INVERTING false
   #define Z_MAX_ENDSTOP_INVERTING false
-  #if ENABLED(EZABL_ENABLE)
-    #if ENABLED(NC_SENSOR)
-		  #define Z_MIN_PROBE_ENDSTOP_INVERTING false
-	  #else
-		  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
-  	#endif
-  #else
-    #define Z_MIN_PROBE_ENDSTOP_INVERTING true
-  #endif
+  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
 
   #if ENABLED(TITAN_EXTRUDER)
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, TITAN_EXTRUDER_STEPS }
@@ -569,8 +896,14 @@
     #define MOTHERBOARD BOARD_MKS_BASE
   #endif
 
-  #define X_MIN_POS 0
-  #define Y_MIN_POS 0
+  #if ENABLED(HOME_ADJUST)
+    #define X_MIN_POS X_HOME_LOCATION
+    #define Y_MIN_POS Y_HOME_LOCATION
+  #else
+    #define X_MIN_POS 0
+    #define Y_MIN_POS 0
+  #endif
+  
   #define X_BED_SIZE 300
   #define Y_BED_SIZE 300
   #define Z_MAX_POS 400
@@ -584,29 +917,16 @@
   #define BAUDRATE 250000
   #define V6_HOTEND
 
+  #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+
   #define X_MIN_ENDSTOP_INVERTING true
   #define Y_MIN_ENDSTOP_INVERTING true
-  #if ENABLED(EZABL_ENABLE)
-	  #if ENABLED(NC_SENSOR)
-  		#define Z_MIN_ENDSTOP_INVERTING false
-	  #else
-  		#define Z_MIN_ENDSTOP_INVERTING true
-	  #endif
-  #else
-    #define Z_MIN_ENDSTOP_INVERTING true
-  #endif
+  #define Z_MIN_ENDSTOP_INVERTING true
   #define X_MAX_ENDSTOP_INVERTING false
   #define Y_MAX_ENDSTOP_INVERTING false
   #define Z_MAX_ENDSTOP_INVERTING false
-  #if ENABLED(EZABL_ENABLE)
-    #if ENABLED(NC_SENSOR)
-		  #define Z_MIN_PROBE_ENDSTOP_INVERTING false
-	  #else
-		  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
-	  #endif
-  #else
-    #define Z_MIN_PROBE_ENDSTOP_INVERTING true
-  #endif
+  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
+
   
   #if ENABLED(CUSTOM_ESTEPS)
 	  #define DEFAULT_AXIS_STEPS_PER_UNIT {100.5,100.5,1600,CUSTOM_ESTEPS_VALUE}
@@ -636,8 +956,14 @@
     #define MOTHERBOARD BOARD_RAMBO
   #endif
 
-  #define X_MIN_POS 0
-  #define Y_MIN_POS 0
+  #if ENABLED(HOME_ADJUST)
+    #define X_MIN_POS X_HOME_LOCATION
+    #define Y_MIN_POS Y_HOME_LOCATION
+  #else
+    #define X_MIN_POS 0
+    #define Y_MIN_POS 0
+  #endif
+  
   #define X_BED_SIZE 295
   #define Y_BED_SIZE 295
   #define Z_MAX_POS 250
@@ -649,31 +975,16 @@
   #ifndef MOTHERBOARD
     #define MOTHERBOARD BOARD_ANET_10 
   #endif
+  
   #define BAUDRATE 115200
 
   #define X_MIN_ENDSTOP_INVERTING true
   #define Y_MIN_ENDSTOP_INVERTING true
-  #if ENABLED(EZABL_ENABLE)
-	  #if ENABLED(NC_SENSOR)
-  		#define Z_MIN_ENDSTOP_INVERTING false
-  	#else
-		  #define Z_MIN_ENDSTOP_INVERTING true
-	  #endif
-  #else
-    #define Z_MIN_ENDSTOP_INVERTING true
-  #endif
+  #define Z_MIN_ENDSTOP_INVERTING true
   #define X_MAX_ENDSTOP_INVERTING false
   #define Y_MAX_ENDSTOP_INVERTING false
   #define Z_MAX_ENDSTOP_INVERTING false
-  #if ENABLED(EZABL_ENABLE)
-    #if ENABLED(NC_SENSOR)
-		  #define Z_MIN_PROBE_ENDSTOP_INVERTING false
-	  #else
-		  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
-	  #endif
-  #else
-    #define Z_MIN_PROBE_ENDSTOP_INVERTING true
-  #endif
+  #define Z_MIN_PROBE_ENDSTOP_INVERTING true
   
   #if ENABLED(ANET_A2) || ENABLED(ANET_A6) || ENABLED(ANET_A8)
     #if ENABLED(TITAN_EXTRUDER)
@@ -682,7 +993,7 @@
 	    #if ENABLED(CUSTOM_ESTEPS)
 		    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, CUSTOM_ESTEPS_VALUE }
 	    #else
-        #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 95 }
+        #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 93 }
       #endif
 	  #endif
 	#else
@@ -692,7 +1003,7 @@
 	    #if ENABLED(CUSTOM_ESTEPS)
 		    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, CUSTOM_ESTEPS_VALUE }
 	    #else
-        #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 95 }
+        #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
 	    #endif
 	  #endif
   #endif
@@ -708,12 +1019,9 @@
   #define DEFAULT_ZJERK                  0.4
   #define DEFAULT_EJERK                  5.0
   
-  #if ENABLED(ANET_OEM)
-     #define FIX_MOUNTED_PROBE
-  #endif
-
   #if ENABLED(ANET_LCD2004)
-    #define ZONESTAR_LCD  
+    #define ZONESTAR_LCD
+    #define LCD2004
   #endif
   #if ENABLED(ANET_LCD12864)
    #define ANET_FULL_GRAPHICS_LCD
@@ -728,16 +1036,21 @@
 #endif
 
 #if ENABLED(A2_SMALL_BED)   
-    #define X_MIN_POS 0
-    #define Y_MIN_POS 0
+    #if ENABLED(HOME_ADJUST)
+      #define X_MIN_POS X_HOME_LOCATION
+      #define Y_MIN_POS Y_HOME_LOCATION
+    #else
+      #define X_MIN_POS 0
+      #define Y_MIN_POS 0
+    #endif
+    
     #define X_BED_SIZE 220
     #define Y_BED_SIZE 220
     #define Z_MAX_POS 230
  
     #if ENABLED(ANET_OEM)
-    #define FIX_MOUNTED_PROBE
-       #define X_PROBE_OFFSET_FROM_EXTRUDER -33
-       #define Y_PROBE_OFFSET_FROM_EXTRUDER -22
+      #define X_PROBE_OFFSET_FROM_EXTRUDER -33
+      #define Y_PROBE_OFFSET_FROM_EXTRUDER -22
     #endif
  
     #define INVERT_X_DIR false
@@ -751,16 +1064,21 @@
 #endif
 
 #if ENABLED(A2_LARGE_BED)
-    #define X_MIN_POS 0
-    #define Y_MIN_POS 0
+    #if ENABLED(HOME_ADJUST)
+      #define X_MIN_POS X_HOME_LOCATION
+      #define Y_MIN_POS Y_HOME_LOCATION
+    #else
+      #define X_MIN_POS 0
+      #define Y_MIN_POS 0
+    #endif
+    
     #define X_BED_SIZE 220
     #define Y_BED_SIZE 270
     #define Z_MAX_POS 230
     
     #if ENABLED(ANET_OEM)
-    #define FIX_MOUNTED_PROBE
-        #define X_PROBE_OFFSET_FROM_EXTRUDER -33
-        #define Y_PROBE_OFFSET_FROM_EXTRUDER -22
+      #define X_PROBE_OFFSET_FROM_EXTRUDER -33
+      #define Y_PROBE_OFFSET_FROM_EXTRUDER -22
     #endif
     #define INVERT_X_DIR false
     #define INVERT_Y_DIR true
@@ -773,17 +1091,23 @@
 #endif
 
 #if ENABLED(ANET_A6)
-    #define X_MIN_POS 0
-    #define Y_MIN_POS 0
+    #if ENABLED(HOME_ADJUST)
+      #define X_MIN_POS X_HOME_LOCATION
+      #define Y_MIN_POS Y_HOME_LOCATION
+    #else
+      #define X_MIN_POS 0
+      #define Y_MIN_POS 0
+    #endif
+    
     #define X_BED_SIZE 220
     #define Y_BED_SIZE 220
     #define Z_MAX_POS 250
 
     #if ENABLED(ANET_OEM)
-    #define FIX_MOUNTED_PROBE
-        #define X_PROBE_OFFSET_FROM_EXTRUDER -1
-        #define Y_PROBE_OFFSET_FROM_EXTRUDER -54
+      #define X_PROBE_OFFSET_FROM_EXTRUDER -1
+      #define Y_PROBE_OFFSET_FROM_EXTRUDER -54
     #endif
+	
     #define INVERT_X_DIR false
     #define INVERT_Y_DIR false
     #define INVERT_Z_DIR true
@@ -795,64 +1119,86 @@
 #endif
 
 #if ENABLED(ANET_A8)
-    #define X_MIN_POS -33
-    #define Y_MIN_POS -10
-    #define X_BED_SIZE 220
-    #define Y_BED_SIZE 220
-    #define Z_MAX_POS 240
+  #if ENABLED(HOME_ADJUST)
+     #define X_MIN_POS X_HOME_LOCATION
+     #define Y_MIN_POS Y_HOME_LOCATION
+  #else
+     #define X_MIN_POS -33
+     #define Y_MIN_POS -10
+  #endif
     
-   #if ENABLED(ANET_OEM)
-   #define FIX_MOUNTED_PROBE
-      #define X_PROBE_OFFSET_FROM_EXTRUDER -26
-      #define Y_PROBE_OFFSET_FROM_EXTRUDER -40
-   #endif
-    #define INVERT_X_DIR false
-    #define INVERT_Y_DIR false
-    #define INVERT_Z_DIR true
-    #if ENABLED(TITAN_EXTRUDER)
-      #define INVERT_E0_DIR true
-	#else
-      #define INVERT_E0_DIR false
-    #endif
+  #define X_BED_SIZE 220
+  #define Y_BED_SIZE 220
+  #define Z_MAX_POS 240
+    
+  #if ENABLED(ANET_OEM)
+    #define X_PROBE_OFFSET_FROM_EXTRUDER -26
+    #define Y_PROBE_OFFSET_FROM_EXTRUDER -40
+  #endif
+   
+  #define INVERT_X_DIR false
+  #define INVERT_Y_DIR false
+  #define INVERT_Z_DIR true
+  
+  #if ENABLED(TITAN_EXTRUDER)
+    #define INVERT_E0_DIR true
+  #else
+    #define INVERT_E0_DIR false
+  #endif
+  
 #endif
 
 #if ENABLED(ANET_E10)
-    #define X_MIN_POS -2
-    #define Y_MIN_POS -8
+    #if ENABLED(HOME_ADJUST)
+      #define X_MIN_POS X_HOME_LOCATION
+      #define Y_MIN_POS Y_HOME_LOCATION
+    #else
+      #define X_MIN_POS -2
+      #define Y_MIN_POS -8
+    #endif
+    
     #define X_BED_SIZE 220
     #define Y_BED_SIZE 270
     #define Z_MAX_POS 300
 
     #if ENABLED(ANET_OEM)
-        #define FIX_MOUNTED_PROBE
-        #define X_PROBE_OFFSET_FROM_EXTRUDER -38
-        #define Y_PROBE_OFFSET_FROM_EXTRUDER -12
+      #define X_PROBE_OFFSET_FROM_EXTRUDER -38
+      #define Y_PROBE_OFFSET_FROM_EXTRUDER -12
     #endif
+	
     #define INVERT_X_DIR false
     #define INVERT_Y_DIR true
     #define INVERT_Z_DIR true
+	
     #if ENABLED(TITAN_EXTRUDER)
       #define INVERT_E0_DIR false
 	#else
       #define INVERT_E0_DIR true
     #endif
+	
 #endif
 
 #if ENABLED(ANET_E12)
-    #define X_MIN_POS -2
-    #define Y_MIN_POS -8
+    #if ENABLED(HOME_ADJUST)
+      #define X_MIN_POS X_HOME_LOCATION
+      #define Y_MIN_POS Y_HOME_LOCATION
+    #else
+      #define X_MIN_POS -2
+      #define Y_MIN_POS -8
+    #endif
+    
     #define X_BED_SIZE 300
     #define Y_BED_SIZE 300
     #define Z_MAX_POS 400
 
     #if ENABLED(ANET_OEM)
-    #define FIX_MOUNTED_PROBE
-       #define X_PROBE_OFFSET_FROM_EXTRUDER -38
-       #define Y_PROBE_OFFSET_FROM_EXTRUDER -12
+     #define X_PROBE_OFFSET_FROM_EXTRUDER -38
+     #define Y_PROBE_OFFSET_FROM_EXTRUDER -12
     #endif
     #define INVERT_X_DIR false
     #define INVERT_Y_DIR true
     #define INVERT_Z_DIR true
+	
     #if ENABLED(TITAN_EXTRUDER)
       #define INVERT_E0_DIR false
 	#else
@@ -860,81 +1206,13 @@
     #endif
 #endif //End ANET model settings
 
-//Sensor Mounts
-#if ENABLED(CR10_VOLCANO)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER 30
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER 12
-#endif
-#if ENABLED(CR10_V6HEAVYDUTY)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER 63
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER 0
-#endif
-#if ENABLED(CR10_OEM)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER -44
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER -10
-#endif
-#if ENABLED(CR10_FANG)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER 48
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER -11
-#endif
-#if ENABLED(TM3DAERO)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER -51
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER -7
-#endif
-#if ENABLED(ENDER2_OEM)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER -33
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER -10
-#endif
-#if ENABLED(ENDER2_V6)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER -35
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER -2
-#endif
-#if ENABLED(TORNADO_OEM)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER -37
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER -10
-#endif
-#if ENABLED(TORNADO_VOLCANO)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER 30
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER 12
-#endif
-#if ENABLED(TORNADO_V6HEAVYDUTY)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER 63
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER 0
-#endif
-#if ENABLED(TAZ5_OEM)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER -52
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER 15
-#endif
-#if ENABLED(WANHAO_I3_OEM)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER -25
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER -38
-#endif
-#if ENABLED(WANHAO_I3_DIIICOOLER)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER -36
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER -37
-#endif
-#if ENABLED(WANHAO_I3MINI_OEM_EZABLMINI)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER -32
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER 0
-#endif
-#if ENABLED(WANHAO_I3MINI_OEM)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER -36
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER 0
-#endif
-#if ENABLED(PETSFANG)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER +48
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER -2
-#endif
-#if ENABLED(ALFAWISEU10_OEM)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER +39
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER -47
-#endif
-
 //Misc Settings
 #if defined(USER_PRINTER_NAME)
   #define CUSTOM_MACHINE_NAME USER_PRINTER_NAME
 #else
-  #if ENABLED(EZABL_ENABLE)
+  #if ENABLED(AR_EZ300)
+    #define CUSTOM_MACHINE_NAME "TH3D Artillery"
+  #elif ENABLED(EZABL_ENABLE)
     #define CUSTOM_MACHINE_NAME "TH3D EZABL"
   #elif ENABLED(EZOUT_ENABLE)
     #define CUSTOM_MACHINE_NAME "TH3D EZOut"
@@ -950,7 +1228,9 @@
   //#define SHOW_BOOTSCREEN
 #else
   #if DISABLED(ANET_LCD2004)
-    #define SHOW_BOOTSCREEN
+    #if DISABLED(DISABLE_BOOT)
+      #define SHOW_BOOTSCREEN
+    #endif
   #endif
 #endif
 #define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION
@@ -960,7 +1240,11 @@
 
 #define SERIAL_PORT 0
 
-#define EXTRUDERS 1
+#if ENABLED(CR10SDUALEBOARD)
+  #define EXTRUDERS 2
+#else
+  #define EXTRUDERS 1
+#endif
 
 #define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
 
@@ -968,6 +1252,10 @@
 
 #if ENABLED(V6_HOTEND)
   #define TEMP_SENSOR_0 5
+#elif ENABLED(TH3D_HOTEND_THERMISTOR)
+  #define TEMP_SENSOR_0 1
+#elif ENABLED(WANHAO_D6)
+  #define TEMP_SENSOR_0 20
 #elif ENABLED(WANHAO_10K_THERMISTOR)
   #define TEMP_SENSOR_0 99
 #elif ENABLED(WANHAO_I3MINI)
@@ -975,18 +1263,32 @@
 #else
   #define TEMP_SENSOR_0 1
 #endif
-#define TEMP_SENSOR_1 0
+
+#if ENABLED(DUAL_HOTEND_DUAL_NOZZLES)
+  #if ENABLED(V6_HOTEND)
+    #define TEMP_SENSOR_1 5
+  #else
+    #define TEMP_SENSOR_1 1
+  #endif
+#else
+  #define TEMP_SENSOR_1 0
+#endif
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
 #define TEMP_SENSOR_4 0
+
 #if ENABLED(AC_BED) || ENABLED(WANHAO_I3MINI)
   #define TEMP_SENSOR_BED 0
+#elif ENABLED(TH3D_BED_THERMISTOR) || ENABLED(ALFAWISE_U10) || ENABLED(FT5)
+  #define TEMP_SENSOR_BED 1
 #elif ENABLED(TAZ5)
   #define TEMP_SENSOR_BED 7
+#elif ENABLED(WANHAO_D6)
+  #define TEMP_SENSOR_BED 1
 #elif ENABLED(KEENOVO_TEMPSENSOR)
   #define TEMP_SENSOR_BED 11
 #else
- #if ENABLED(WANHAO_I3) || ENABLED(ALFAWISE_U10)
+ #if ENABLED(WANHAO_I3)
   #if ENABLED(WANHAO_10K_THERMISTOR)
     #define TEMP_SENSOR_BED 99
   #else
@@ -1027,11 +1329,18 @@
   #define PID_AUTOTUNE_MENU
   #define PID_FUNCTIONAL_RANGE 10
   
+#if ENABLED(WANHAO_D6)
+  // Duplicator 6
+  #define  DEFAULT_Kp 9.12
+  #define  DEFAULT_Ki 0.41
+  #define  DEFAULT_Kd 50.98
+#else  
   // Default Hotend PID
   #define  DEFAULT_Kp 22.2
   #define  DEFAULT_Ki 1.08
   #define  DEFAULT_Kd 114
- 
+#endif
+  
 #endif // PIDTEMP
 
 #if DISABLED(PIDBED_DISABLE)
@@ -1045,12 +1354,17 @@
 #define MAX_BED_POWER 255
 
 #if ENABLED(PIDTEMPBED)
-
-  //Default Bed PID
-  #define  DEFAULT_bedKp 690.34
-  #define  DEFAULT_bedKi 111.47
-  #define  DEFAULT_bedKd 1068.83
-  
+  #if ENABLED(WANHAO_D6)
+    // Duplicator 6
+    #define  DEFAULT_bedKp 124.55
+    #define  DEFAULT_bedKi 23.46
+    #define  DEFAULT_bedKd 165.29
+  #else
+    //Default Bed PID
+    #define  DEFAULT_bedKp 690.34
+    #define  DEFAULT_bedKi 111.47
+    #define  DEFAULT_bedKd 1068.83
+  #endif	
 #endif
 
 #define PREVENT_COLD_EXTRUSION
@@ -1092,10 +1406,6 @@
 
 #define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST / 2)
 
-#if ENABLED(EZABL_STABILIZE)
-  #define DELAY_BEFORE_PROBING 500  // (ms) To prevent vibrations from triggering piezo sensors
-#endif
-
 #define MULTIPLE_PROBING 2
 
 #define Z_CLEARANCE_DEPLOY_PROBE   5
@@ -1120,7 +1430,9 @@
 #define DISABLE_E false
 #define DISABLE_INACTIVE_EXTRUDER true
 
-#define INVERT_E1_DIR false
+#if DISABLED(TITAN_EXTRUDER) && DISABLED(CR10SDUALEBOARD)
+  #define INVERT_E1_DIR false
+#endif
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
 #define INVERT_E4_DIR false
@@ -1139,8 +1451,11 @@
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
 
-#if ENABLED(WANHAO_I3MINI)
+#define MIN_SOFTWARE_ENDSTOPS
+#if ENABLED(MIN_SOFTWARE_ENDSTOPS)
   #define MIN_SOFTWARE_ENDSTOP_X
+  #define MIN_SOFTWARE_ENDSTOP_Y
+  //#define MIN_SOFTWARE_ENDSTOP_Z
 #endif
 
 #define MAX_SOFTWARE_ENDSTOPS
@@ -1150,7 +1465,7 @@
   #define MAX_SOFTWARE_ENDSTOP_Z
 #endif
 
-#if ENABLED(EZOUT_ENABLE) || (ENABLED(CR10S) && DISABLED(CR10S_NOFILAMENTSENSOR)) || (ENABLED(CR10S_MINI) && DISABLED(CR10S_NOFILAMENTSENSOR))  || (ENABLED(CR10S_S4) && DISABLED(CR10S_NOFILAMENTSENSOR)) || (ENABLED(CR10S_S5) && DISABLED(CR10S_NOFILAMENTSENSOR)) || ENABLED(ALFAWISE_U10)
+#if ENABLED(EZOUT_ENABLE) || ENABLED(EZOUT_V2) || (ENABLED(CR10S) && DISABLED(CR10S_NOFILAMENTSENSOR)) || (ENABLED(CR10S_MINI) && DISABLED(CR10S_NOFILAMENTSENSOR))  || (ENABLED(CR10S_S4) && DISABLED(CR10S_NOFILAMENTSENSOR)) || (ENABLED(CR10S_S5) && DISABLED(CR10S_NOFILAMENTSENSOR)) || ENABLED(ALFAWISE_U10)
   #define FILAMENT_RUNOUT_SENSOR
   #if ENABLED(FILAMENT_RUNOUT_SENSOR)
     #if ENABLED(EZOUT_ENABLE)
@@ -1177,15 +1492,11 @@
 #endif
 
 #if ENABLED(EZABL_ENABLE)
-  #if ENABLED(LINEAR_LEVELING)
-    #define AUTO_BED_LEVELING_LINEAR
-  #else
-    #define AUTO_BED_LEVELING_BILINEAR
-  #endif
+  #define AUTO_BED_LEVELING_BILINEAR
 #endif
 
 #if ENABLED(MESH_BED_LEVELING) || ENABLED(AUTO_BED_LEVELING_BILINEAR) || ENABLED(AUTO_BED_LEVELING_UBL)
-  #define ENABLE_LEVELING_FADE_HEIGHT
+  //#define ENABLE_LEVELING_FADE_HEIGHT //Disabled due to Z Offset issues
   #define SEGMENT_LEVELED_MOVES
   #define LEVELED_SEGMENT_LENGTH 5.0
 #endif
@@ -1202,7 +1513,7 @@
   
   #define MIN_PROBE_EDGE 5
 
-  #if ENABLED(AUTO_BED_LEVELING_BILINEAR)
+  #if ENABLED(EZABL_OUTSIDE_GRID_COMPENSATION)
     #define EXTRAPOLATE_BEYOND_GRID
   #endif
 
@@ -1261,18 +1572,6 @@
 
 #if DISABLED(ENDER2) || DISABLED(EZOUT_ENABLE) || DISABLED(WANHAO_I3)
   #define SPEAKER
-#endif
-
-#if ENABLED(CR10) || ENABLED(CR10_MINI) || ENABLED(CR10_S4) || ENABLED(CR10_S5) || ENABLED(CR10S) || ENABLED(CR10S_MINI) || ENABLED(CR10S_S4) || ENABLED(CR10S_S5) || ENABLED(TORNADO) || ENABLED(TAZ5) || ENABLED(ENDER3) || ENABLED(ALFAWISE_U10)
-  #if ENABLED(CR10LCD_CR10S)
-    #define CR10_STOCKDISPLAY
-  #else
-    #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
-  #endif
-#endif
-
-#if ENABLED(ENDER2) || ENABLED(WANHAO_I3MINI)
-  #define MINIPANEL
 #endif
 
 #if ENABLED(FAN_KICKSTART)

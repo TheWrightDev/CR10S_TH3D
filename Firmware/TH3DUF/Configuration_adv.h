@@ -114,14 +114,49 @@
   #define DIGIPOT_I2C_MOTOR_CURRENTS { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }  
 #endif
 
+#if ENABLED(WANHAO_D6)
+  #define CASE_LIGHT_ENABLE
+  #if ENABLED(CASE_LIGHT_ENABLE)
+    #define CASE_LIGHT_PIN 8                  // Override the default pin if needed
+    #define INVERT_CASE_LIGHT false             // Set true if Case Light is ON when pin is LOW
+    #define CASE_LIGHT_DEFAULT_ON true          // Set default power-up state on
+    #define CASE_LIGHT_DEFAULT_BRIGHTNESS 255   // Set default power-up brightness (0-255, requires PWM pin)
+    #define MENU_ITEM_CASE_LIGHT              // Add a Case Light option to the LCD main menu
+  #endif
+  
+  #define AXIS_RELATIVE_MODES {false, false, false, false}
+
+  #define MOTOR_CURRENT_PWM_RANGE 2782
+  #define PWM_MOTOR_CURRENT { 1200, 1200, 1000 }
+  #define DIGIPOT_I2C_NUM_CHANNELS 8 
+  #define DIGIPOT_I2C_MOTOR_CURRENTS { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }
+  
+  #define ENCODER_RATE_MULTIPLIER 
+  #define ENCODER_10X_STEPS_PER_SEC 75
+  #define ENCODER_100X_STEPS_PER_SEC 160
+
+  #define CHDK_DELAY 50
+  
+  #if ENABLED(DOGLCD)
+    #define USE_SMALL_INFOFONT
+  #endif
+  
+  #define I2C_SLAVE_ADDRESS  0
+  
+#endif
+
 #if ENABLED(TORNADO)
 #define E0_AUTO_FAN_PIN 7
   #define EXTRUDER_AUTO_FAN_TEMPERATURE 50
-  #define EXTRUDER_AUTO_FAN_SPEED  127  // == full speed
+  #if ENABLED(TORNADO_QUIET)
+    #define EXTRUDER_AUTO_FAN_SPEED  190  // 255 == full speed
+  #else
+    #define EXTRUDER_AUTO_FAN_SPEED  255  // 255 == full speed
+  #endif
 #else
-#define E0_AUTO_FAN_PIN -1
+  #define E0_AUTO_FAN_PIN -1
   #define EXTRUDER_AUTO_FAN_TEMPERATURE 50
-  #define EXTRUDER_AUTO_FAN_SPEED   255  // == full speed
+  #define EXTRUDER_AUTO_FAN_SPEED   255  // 255 == full speed
 #endif
 #define E1_AUTO_FAN_PIN -1
 #define E2_AUTO_FAN_PIN -1
@@ -151,7 +186,7 @@
 #define DEFAULT_MINTRAVELFEEDRATE     0.0
 
 #if ENABLED(ULTIPANEL)
-  #define MANUAL_FEEDRATE {50*60, 50*60, 4*60, 60} // Feedrates for manual moves along X, Y, Z, E from panel
+  #define MANUAL_FEEDRATE {70*60, 70*60, 4*60, 60} // Feedrates for manual moves along X, Y, Z, E from panel
   #define ULTIPANEL_FEEDMULTIPLY  // Comment to disable setting feedrate multiplier via encoder
 #endif
 
@@ -232,7 +267,13 @@
                                       // Note: Only affects SCROLL_LONG_FILENAMES with SDSORT_CACHE_NAMES but not SDSORT_DYNAMIC_RAM.
   #endif
 
-  #if DISABLED(ANET_LCD2004)
+  #if DISABLED(LCD2004)
+    #define LCD_SET_PROGRESS_MANUALLY
+  #else
+    #define LCD_PROGRESS_BAR
+    #define PROGRESS_BAR_BAR_TIME 2000
+    #define PROGRESS_BAR_MSG_TIME 3000
+    #define PROGRESS_MSG_EXPIRE   0
     #define LCD_SET_PROGRESS_MANUALLY
   #endif
   
@@ -342,22 +383,9 @@
 //================================= Buffers =================================
 //===========================================================================
 
-// @section hidden
-
-// The number of linear motions that can be in the plan at any give time.
-// THE BLOCK_BUFFER_SIZE NEEDS TO BE A POWER OF 2 (e.g. 8, 16, 32) because shifts and ors are used to do the ring-buffering.
-#if ENABLED(SDSUPPORT)
-  #define BLOCK_BUFFER_SIZE 16 // SD,LCD,Buttons take more memory, block buffer needs to be smaller
-#else
-  #define BLOCK_BUFFER_SIZE 16 // maximize block buffer
-#endif
-
-// @section serial
-
-// The ASCII buffer for serial input
+#define BLOCK_BUFFER_SIZE 16
 #define MAX_CMD_SIZE 96
 #define BUFSIZE 4
-
 #define TX_BUFFER_SIZE 0
 
 // @section extras
@@ -368,7 +396,7 @@
   #define PAUSE_PARK_RETRACT_LENGTH 1       // Initial retract in mm
                                               // It is a short retract used immediately after print interrupt before move to filament exchange position
   #define FILAMENT_CHANGE_UNLOAD_FEEDRATE 60  // Unload filament feedrate in mm/s - filament unloading can be fast
-  #define FILAMENT_CHANGE_UNLOAD_LENGTH 500   // Unload filament length from hotend in mm
+  #define FILAMENT_CHANGE_UNLOAD_LENGTH 100   // Unload filament length from hotend in mm
                                               // Longer length for bowden printers to unload filament from whole bowden tube,
                                               // shorter length for printers without bowden to unload filament from extruder only,
                                               // 0 to disable unloading for manual unloading
