@@ -340,7 +340,7 @@
 // USE WHOLE NUMBERS ONLY
 #define CUSTOM_ESTEPS
 // This is only used if you enable CUSTOM_ESTEPS above.
-#define CUSTOM_ESTEPS_VALUE 574
+#define CUSTOM_ESTEPS_VALUE 535
 
 // If you are using an E3D or TH3D Titan Extruder uncomment the below line 
 // to setup the firmware to the correct steps and direction
